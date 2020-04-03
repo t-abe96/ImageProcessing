@@ -32,5 +32,16 @@ namespace ImageProcessing
                 Cv2.ImShow("sample_show", mat);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // 画像の読み込み
+            using (Mat mat = new Mat(@"D:\cs_source\img\neko.jpg"))
+            using (Mat matGray = mat.CvtColor(ColorConversionCodes.BGR2GRAY))
+            {
+                // 画像をウィンドウに表示
+                Cv2.ImShow("grayscale_show", matGray);
+            }
+        }
     }
 }
