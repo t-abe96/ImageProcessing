@@ -22,7 +22,12 @@ namespace ImageProcessing
         {
 
         }
-
+        
+        /* 
+         * 
+         * 画像をウィンドウに表示
+         * 
+         */
         private void button1_Click(object sender, EventArgs e)
         {
             // 画像の読み込み
@@ -30,9 +35,20 @@ namespace ImageProcessing
             {
                 // 画像をウィンドウに表示
                 Cv2.ImShow("sample_show", mat);
+
+                // 画像を保存
+                Cv2.ImWrite(@"D:\cs_source\img\output.jpg", mat);
+                // 切り抜いた画像を保存
+                var mat2 = mat.Clone(new Rect(100, 100, 200, 150));
+                Cv2.ImWrite(@"D:\cs_source\img\output_cut.jpg", mat2);
             }
         }
 
+        /* 
+         * 
+         * グレースケール処理
+         * 
+         */
         private void button2_Click(object sender, EventArgs e)
         {
             // 画像の読み込み
@@ -43,5 +59,7 @@ namespace ImageProcessing
                 Cv2.ImShow("grayscale_show", matGray);
             }
         }
+
+        
     }
 }
