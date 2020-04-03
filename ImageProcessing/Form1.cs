@@ -103,6 +103,7 @@ namespace ImageProcessing
                 }
             }
         }
+
         /* 
          * 
          * テンプレートマッチング2
@@ -146,6 +147,32 @@ namespace ImageProcessing
                 }
                 // ウィンドウに画像を表示
                 Cv2.ImShow("temlate2_show", mat);
+            }
+        }
+
+        /* 
+         * 
+         * テンプレートマッチング2
+         * 
+         */
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // 顔の矩形を抽出
+            using (Mat mat = new Mat(@"D:\cs_source\img\face.jpg"))
+            {
+                // 分類機を用意
+                using (CascadeClassifier cascade = new CascadeClassifier(@"D:\cs_source\haarcascade_frontalface_default.xml"))
+                {
+                    foreach (Rect rectFace in cascade.DetectMultiScale(mat))
+                    {
+                        // 見つかった場所に赤枠を表示
+                        Rect rect = new Rect(rectFace.X, rectFace.Y, rectFace.Width, rectFace.Height);
+                        Cv2.Rectangle(mat, rect, new OpenCvSharp.Scalar(0, 0, 255), 2);
+
+                    }
+                }
+                // ウィンドウに画像を表示
+                Cv2.ImShow("face_show", mat);
             }
         }
     }
