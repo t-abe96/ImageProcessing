@@ -60,6 +60,7 @@ namespace ImageProcessing
 
                 // 画像を保存
                 Cv2.ImWrite(@"D:\cs_source\img\output.jpg", mat);
+
                 // 切り抜いた画像を保存
                 var mat2 = mat.Clone(new Rect(100, 100, 200, 150));
                 Cv2.ImWrite(@"D:\cs_source\img\output_cut.jpg", mat2);
@@ -95,9 +96,8 @@ namespace ImageProcessing
 
                     // ウィンドウに画像を表示
                     Cv2.ImShow("template1_show", mat);
-                }
-                else
-                {
+                } else {
+
                     // 見つからない場合
                     MessageBox.Show("見つかりませんでした");
                 }
@@ -140,11 +140,12 @@ namespace ImageProcessing
                         Rect outRect;
                         Cv2.FloodFill(result, maxloc, new OpenCvSharp.Scalar(0), out outRect, new OpenCvSharp.Scalar(0.1),
                             new OpenCvSharp.Scalar(1.0), FloodFillFlags.Link4);
-                    } else
-                    {
+                    } else {
+
                         break;
                     }
                 }
+
                 // ウィンドウに画像を表示
                 Cv2.ImShow("temlate2_show", mat);
             }
@@ -152,7 +153,7 @@ namespace ImageProcessing
 
         /* 
          * 
-         * テンプレートマッチング2
+         * 顔認識
          * 
          */
         private void button5_Click(object sender, EventArgs e)
@@ -168,9 +169,9 @@ namespace ImageProcessing
                         // 見つかった場所に赤枠を表示
                         Rect rect = new Rect(rectFace.X, rectFace.Y, rectFace.Width, rectFace.Height);
                         Cv2.Rectangle(mat, rect, new OpenCvSharp.Scalar(0, 0, 255), 2);
-
                     }
                 }
+
                 // ウィンドウに画像を表示
                 Cv2.ImShow("face_show", mat);
             }
